@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://jpmccfgregistry.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_55d11ad61c934edea0e5c07164aa938e }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_af4b2a4bda044757ac6112fdc57da92e }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_5cff9eeb4e97448bafe4d9b611445348 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_9c8cde393f5c4a4398a57fc6281dc538 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: jpmccfgregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_55d11ad61c934edea0e5c07164aa938e }}/jpmcfrontend:${{ github.sha }}
+        tags: jpmccfgregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_5cff9eeb4e97448bafe4d9b611445348 }}/jpmccfgregistryfrontend:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'jpmccfg23-frontend'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_2a8985471eb849b7aaf95a266e734063 }}
-        images: 'jpmccfgregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_55d11ad61c934edea0e5c07164aa938e }}/jpmcfrontend:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_209470fee2e54ecca8791d44aab5af14 }}
+        images: 'jpmccfgregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_5cff9eeb4e97448bafe4d9b611445348 }}/jpmccfgregistryfrontend:${{ github.sha }}'
